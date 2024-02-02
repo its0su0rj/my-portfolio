@@ -10,21 +10,6 @@ st.set_page_config(
     layout="wide",
 )
 
-# Set the background image
-st.markdown(
-    """
-    <style>
-    body {
-        background-image: url("https://images.unsplash.com/photo-1506744038136-4627b8c4857e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
 # Create a sidebar with navigation links
 st.sidebar.title("Navigation")
 page = st.sidebar.selectbox(
@@ -78,23 +63,18 @@ elif page == "Projects":
     with col3:
         st.write(projects.iloc[2])
 
-    # Create a graph for each project
-    for project in projects["Title"]:
-        data = pd.DataFrame({
-            "Project": [project],
-            "Visitors": [100, 200, 300]
-        })
+# Create the blog page
+elif page == "Blog":
+    st.title("My Blog")
+    st.write("Here are some of my recent blog posts:")
 
-        fig = px.bar(data, x="Project", y="Visitors")
-        st.plotly_chart(fig)
-
-# Create the about page
-elif page == "About":
-    st.title("About Me")
-    st.write("I am a passionate coder with a strong desire to create innovative and user-friendly web applications.")
-    st.write("I have a background in computer science and have been working as a software engineer for the past 5 years.")
-    st.write("I am proficient in a variety of programming languages and technologies, including Python, JavaScript, and React.")
-    st.write("I am also an active member of the open source community and have contributed to several popular projects.")
+    # Create a list of blog posts
+    blog_posts = pd.DataFrame({
+        "Title": ["Blog Post 1", "Blog Post 2", "Blog Post 3"],
+        "Date": ["2022-01-01", "2022-02-01", "2022-03-01"],
+        "Link": ["https://blog.username.com/post1", "https://blog.username.com/post2", "https://blog.username.com/post3"],
+    })
+    st.write(blog_posts)
 
 # Create the contact page
 elif page == "Contact":
@@ -121,3 +101,8 @@ st.sidebar.write("[LinkedIn](https://linkedin.com/in/username)")
 
 # Footer
 st.markdown("Copyright © 2022 Coder Portfolio. All rights reserved.")
+
+
+# Display the logo and make it clickable to open the sidebar
+if st.image("logo.png", width=50, use_column_width=False):
+    st.sidebar.button('Open Sidebar Menu')
