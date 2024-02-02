@@ -104,5 +104,5 @@ st.markdown("Copyright © 2022 Coder Portfolio. All rights reserved.")
 
 
 # Display the logo and make it clickable to open the sidebar
-if st.image("logo.png", width=50, use_column_width=False):
+if st.image("grid.png", width=50, use_column_width=False):
     st.sidebar.button('Open Sidebar Menu')
